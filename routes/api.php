@@ -23,6 +23,8 @@ Route::post('content/{id}',              ['uses' => 'controller@content' ]);
 //RICERCA
 Route::post('contents',                 ['uses' => 'controller@contents' ]);
 
+Route::get('content/{id?}',             ['uses' => 'controller@content']);
+
 Route::get('subcategories/{id?}',       ['uses' => 'controller@subcategories']);
 
 Route::get('categories',                ['uses' => 'controller@categories']);

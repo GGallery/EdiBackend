@@ -152,8 +152,8 @@ class Controller extends BaseController
         $q = $q->select('contents.*')->distinct();
         $q = $q->limit($box->max_elementi);
 
-     //   $q = $q->join('content_roles_maps', 'contents.id', '=', 'content_roles_maps.content_id');
-     //   $q = $q->whereIn('role_id', $current_user_usergroup );
+//        $q = $q->join('content_roles_maps', 'contents.id', '=', 'content_roles_maps.content_id');
+//        $q = $q->whereIn('role_id', $current_user_usergroup );
 
 
         // ELABORAZIONE QUERY
