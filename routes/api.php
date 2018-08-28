@@ -18,20 +18,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //CONTENUTO SINGOLO
-Route::post('content/{id}',              ['uses' => 'controller@content' ]);
+Route::post('content/{id}',              ['uses' => 'Controller@content' ]);
 
 //RICERCA
-Route::post('contents',                 ['uses' => 'controller@contents' ]);
+Route::post('contents',                 ['uses' => 'Controller@contents' ]);
 
-Route::get('content/{id?}',             ['uses' => 'controller@content']);
+Route::get('content/{id?}',             ['uses' => 'Controller@content']);
 
-Route::get('subcategories/{id?}',       ['uses' => 'controller@subcategories']);
+Route::get('subcategories/{id?}',       ['uses' => 'Controller@subcategories']);
 
-Route::get('categories',                ['uses' => 'controller@categories']);
+Route::get('categories',                ['uses' => 'Controller@categories']);
 
-Route::post('boxes',                    ['uses' => 'controller@boxes' ]);
+Route::post('boxes',                    ['uses' => 'Controller@boxes' ]);
 
-Route::post('box',                    ['uses' => 'controller@box' ]);
+Route::post('box',                    ['uses' => 'Controller@box' ]);
 
 
-Route::get('test/{id}',              ['uses' => 'controller@content' ]);
+Route::get('test/{id}',              ['uses' => 'Controller@content' ]);
