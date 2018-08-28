@@ -8,7 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Http\Request;
-use DB;
 
 class Controller extends BaseController
 {
