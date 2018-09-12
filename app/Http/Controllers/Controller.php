@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Http\Request;
+use DB;
 
 class Controller extends BaseController
 {
@@ -141,6 +142,7 @@ class Controller extends BaseController
 
         $box = \App\Box::with('_tipologia')->find($box_id);
 
+        // TODO: da rendere condizionale
         $relatedContents = $box->_contents()->allRelatedIds()->implode(',');
 
         $query = $box->_tipologia->query;

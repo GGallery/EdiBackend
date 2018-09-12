@@ -33,5 +33,4 @@ Route::post('boxes',                    ['uses' => 'Controller@boxes' ]);
 
 Route::post('box',                    ['uses' => 'Controller@box' ]);
 
-
 Route::get('test/{id}',              ['uses' => 'Controller@content' ]);
