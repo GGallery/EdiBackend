@@ -27,7 +27,7 @@ Route::get('content/{id?}',             ['uses' => 'Controller@content']);
 
 Route::get('subcategories/{id?}',       ['uses' => 'Controller@subcategories']);
 
-Route::get('categories',                ['uses' => 'Controller@categories']);
+Route::get('categories/{id?}',                ['uses' => 'Controller@categories']);
 
 Route::post('boxes',                    ['uses' => 'Controller@boxes' ]);
 

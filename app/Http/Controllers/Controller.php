@@ -39,7 +39,7 @@ class Controller extends BaseController
         $filter['prodotto_compare_type'] =          $request->input('prodotto_compare_type', '=');
 
         $filter['offset'] =                         $request->input('offset', 0);
-        $filter['limit'] =                          $request->input('limit', 10);
+        $filter['limit'] =                          $request->input('limit', 30);
 
         $filter['orderkey'] =                       $request->input('orderkey', 'id');
         $filter['orderdir'] =                       $request->input('orderdir', 'asc');
@@ -76,7 +76,7 @@ class Controller extends BaseController
             $q = $q->whereRaw('MATCH(titolo, abstract, descrizione, alias) AGAINST(\''.$filter['text'].'\')');
         }
 
-
+        $counttotal = $q->count();
 
         $q = $q->limit($filter['limit'])->offset($filter['offset']);
         $q = $q->orderBy($filter['orderkey'], $filter['orderdir']);
@@ -84,7 +84,7 @@ class Controller extends BaseController
 
         $res['data'] = $q->get();
         $res['query'] = $q->toSql();
-        $res['count'] = $res['data']->count();
+        $res['count'] = $counttotal;
         $res['filter'] = $filter;
 
         return json_encode($res);
@@ -100,14 +100,19 @@ class Controller extends BaseController
     public function subcategories(Request $request, $id = null){
 
         $data = $id
-            ? \App\Subcategory::where('parent_id', $id)->get()
-            : \App\Subcategory::all();
+            ? \App\Category::where('parent_id', $id)->get()
+            : \App\Category::where('parent_id', '<>', 0)->get()
+            ;
 
         return json_encode($data);
     }
 
-    public function categories(Request $request){
-        $data = \App\Category::all();
+    public function categories(Request $request, $id = null){
+        $data = $id
+            ? \App\Category::find($id)->get()
+            : \App\Category::all()
+        ;
+
         return json_encode($data);
     }
 
@@ -206,14 +211,18 @@ class Controller extends BaseController
         // QUERY LOG
         $log = $q->toSql();
 
+        // TOTAL ROW
+        //$total = $q->total();
+
         // PRINT CONTENUTI
-        $contents = 'QUERY NOT RUNNING';
+        //$contents = 'QUERY NOT RUNNING';
         $contents =$q->get();
 
         // ARRAY DI RETURN
 
         $data['log'] = $log;
         $data['box'] = $box;
+        //$data['total'] = $total;
         $data['contents'] = $contents;
         //$data['tmp']=$next_content_ids;
 
