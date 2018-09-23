@@ -51,7 +51,7 @@ class Controller extends BaseController
         /* FINE PARAMETRI DI RICERCA */
 
 
-//        $q = \App\Content::with('categoria');
+        $q = \App\Content::with('categoria', '_ratingAvg');
         $q = \App\Content::whereRaw('1 != 0');
 
         $q = $q->select('*');
@@ -93,7 +93,20 @@ class Controller extends BaseController
 
     public function content(Request $request, $id)
     {
-        $data = \App\Content::with('_categoria', '_livello' , '_tipologia', '_formato', '_prodotto')->find($id);
+        $data = \App\Content::with('_categoria', '_livello' , '_tipologia', '_formato', '_prodotto', '_ratingAvg')->find($id);
+
+        return json_encode($data);
+    }
+
+    public function rating(Request $request, $id){
+
+        $data = DB::table('rating')
+            ->select('rating')
+            ->where('id_contenuto', $id)
+            ->groupBy('rating')
+            ->get();
+
+
         return json_encode($data);
     }
 
@@ -102,7 +115,7 @@ class Controller extends BaseController
         $data = $id
             ? \App\Category::where('parent_id', $id)->get()
             : \App\Category::where('parent_id', '<>', 0)->get()
-            ;
+        ;
 
         return json_encode($data);
     }
@@ -230,6 +243,7 @@ class Controller extends BaseController
 
 
     }
+
 
     private function grepQuery($text, $tag){
 

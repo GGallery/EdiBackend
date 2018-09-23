@@ -9,7 +9,7 @@ class Content extends Model
 {
 
     public function _categoria(){
-        return $this->belongsTo('\App\Subcategory', 'categoria' );
+        return $this->belongsTo('\App\Category', 'categoria' );
     }
 
     public function _livello(){
@@ -30,6 +30,14 @@ class Content extends Model
 
     public function _visibileDaiGruppi(){
         return $this->belongsToMany('TCG\\Voyager\\Models\\Role', 'content_roles_maps', 'id');
+    }
+
+    public function _ratingList(){
+        return $this->hasMany('\App\ContentRate');
+    }
+
+    public function _ratingAvg(){
+        return $this->belongsTo( '\App\ContentRateAvg', 'rating');
     }
 
 }

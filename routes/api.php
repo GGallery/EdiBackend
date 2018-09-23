@@ -31,6 +31,6 @@ Route::get('categories/{id?}',                ['uses' => 'Controller@categories'
 
 Route::post('boxes',                    ['uses' => 'Controller@boxes' ]);
 
-Route::post('box',                    ['uses' => 'Controller@box' ]);
+Route::post('box',                      ['uses' => 'Controller@box' ]);
 
-Route::get('test/{id}',              ['uses' => 'Controller@content' ]);
+Route::get('rating/{id}',                 ['uses' => 'Controller@rating' ]);
